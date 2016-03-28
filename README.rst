@@ -3,8 +3,8 @@ LoBot
 A highly extensible IRC Bot framework
 
 .. image:: https://readthedocs.org/projects/lobot/badge/?version=latest
-:target: http://lobot.readthedocs.org/en/latest/?badge=latest
-:alt: Documentation Status
+    :target: http://lobot.readthedocs.org/en/latest/?badge=latest
+    :alt: Documentation Status
 
 Introduction
 ============
