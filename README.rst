@@ -3,6 +3,10 @@ LoBot
 
 A highly extensible IRC Bot framework
 
+.. image:: https://badge.fury.io/py/lobot.svg
+    :target: https://badge.fury.io/py/lobot
+    :alt: PyPI Version
+
 .. image:: https://readthedocs.org/projects/lobot/badge/?version=latest
     :target: http://lobot.readthedocs.org/en/latest/?badge=latest
     :alt: Documentation Status

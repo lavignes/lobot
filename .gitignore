@@ -3,3 +3,4 @@ doc/_*
 *.json
 *.pyc
 *.pyo
+*.egg-info

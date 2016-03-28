@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 import lobot
 
 
@@ -10,7 +10,7 @@ setup(name='lobot',
       license='MIT',
       description='An extensible IRC bot',
       download_url='https://github.com/pyrated/lobot.git',
-      packages=['lobot'],
+      packages=find_packages(),
       scripts=['bin/lobot'],
       requires=open('requirements.txt').read().splitlines(),
       classifiers=[
