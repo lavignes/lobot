@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+from collections import OrderedDict
+import asyncio
+import json
+import os
+
+from lobot import Lobot
+
+if not os.path.isfile('config.json'):
+    with open('config.json', 'w') as config:
+        defaults = OrderedDict([
+            ('lobot', OrderedDict([
+                ('nick', 'LoBot'),
+                ('username', 'LoBot'),
+                ('owner', 'LoBot'),
+                ('channels', [
+                    '#lobot'
+                ]),
+                ('plugins', [
+                    'lobot.plugins.echo'
+                ])
+            ])),
+            ('lobot.plugins.echo', OrderedDict([
+                ('state', False)
+            ]))
+        ])
+        json.dump(defaults, config, indent=4)
+
+loop = asyncio.get_event_loop()
+bot = Lobot(loop, 'config.json')
+loop.run_forever()
