@@ -1,7 +1,7 @@
 LoBot
 =====
 
-A highly extensible IRC Bot framework
+A highly extensible IRC Bot framework inspired by `irc3 <https://github.com/gawel/irc3>`_
 
 .. image:: https://badge.fury.io/py/lobot.svg
     :target: https://badge.fury.io/py/lobot
