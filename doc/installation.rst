@@ -7,6 +7,8 @@ Installation
 
 **From source**
 
+Download the latest LoBot library from: https://github.com/pyrated/lobot
+
 Install the dependencies:
 
 - `aiohttp <https://github.com/KeepSafe/aiohttp>`_
@@ -14,8 +16,6 @@ Install the dependencies:
 Alternatively use **pip**::
 
     $ pip install -r requirements.txt
-
-Download the latest LoBot library from: https://github.com/pyrated/lobot
 
 Extract the source distribution and run::
 
