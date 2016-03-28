@@ -7,6 +7,10 @@ A highly extensible IRC Bot framework
     :target: http://lobot.readthedocs.org/en/latest/?badge=latest
     :alt: Documentation Status
 
+.. image:: https://travis-ci.org/pyrated/lobot.svg?branch=master
+    :target: https://travis-ci.org/pyrated/lobot
+    :alt: Travis Build
+
 Introduction
 ============
 
