@@ -1,4 +1,4 @@
 include LISCENSE
 include README.rst
 include requirements.txt
-prun docs/_build
+prune doc/_build
