@@ -1,0 +1,11 @@
+language: python
+python:
+- '3.5'
+deploy:
+  provider: pypi
+  user: pyrated
+  password:
+    secure: a6qvOS1JOc/wDKTEIwGMiYWRh4bZxISWRpxnKi+ylCFKPHQ5vl85ORhdBuFbDpv5M5Xu62fMOOtd/hYehTeLssg3yh5Wzqfg6k4PM844O01qtcXLFhLsNWx2KtsDreaGI29W4yMHcYV3wap8h77IknmvMEpGl9DBZyfetKePWFUYo5vqFKq7KpbX7AbWwFbKFTLeQEpkT2PwTOzGRYcFK2zT32tTwRr72257lVIKzb0DMwfKvZ055+xycW+4j+p4FipRleJU04StCwJhEPqVbaxXKuirsKNZxoatfU58X1p5Fs7quyxwfhiifP1YYnRIAo9AFLfaxmJO7Cbg5pnWrmfuvE58jEMMJdJf2MYlPRjcgPo1vnEadLzna1e2kkRB6QmvnFUhiPGw1CYJOJBF+WpW4n0rzdLRYAZVpI1vE1qkmGHZ8B7ApxhfSr3Citn4d/RnGOkFjwtaAAgk3sfZiPerqT01T8TSYGkRwG+LS9ULrxIIcdCeWzsunl82LrCsBF653rHonzTodUB8pl0VIUpPY37s2vkUEwJuHj1nHUsL8b2vF0012MmhqDNQj2zX3gng9J6H2vm085FiteiP3x9/lFchusxKF3YpZYkVw1wxTLw/OHrbYkkuu1F6kbUqYCc5glkLPCvNNDEsVGHwxH3jQMcXkx5VxLxNT9wlyZE=
+  on:
+    tags: true
+    branch: master
