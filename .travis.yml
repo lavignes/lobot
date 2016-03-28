@@ -1,6 +1,8 @@
 language: python
+
 python:
 - '3.5'
+
 deploy:
   provider: pypi
   user: pyrated
@@ -9,3 +11,6 @@ deploy:
   on:
     tags: true
     branch: master
+
+script:
+    touch foo
