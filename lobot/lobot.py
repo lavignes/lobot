@@ -50,7 +50,10 @@ class Lobot(IRCProtocolDelegate, _Bridge):
 
     def _connect(self):
         factory = IRCProtocolFactory(self)
-        future = self._loop.create_connection(factory, host='localhost', port=6666)
+        future = self._loop.create_connection(factory,
+                                              host=self._config['lobot']['host'],
+                                              port=self._config['lobot']['port'],
+                                              ssl=self._config['lobot']['ssl'])
         asyncio.ensure_future(future)
 
     def _process_listeners(self, plugin: Plugin, prefix: Prefix, target: str, message: str):

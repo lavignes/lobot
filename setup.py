@@ -9,6 +9,7 @@ setup(name='lobot',
       url='https://github.com/pyrated/lobot',
       license='MIT',
       description='An extensible IRC bot',
+      long_description=open('README.rst').read(),
       download_url='https://github.com/pyrated/lobot.git',
       packages=find_packages(),
       scripts=['bin/lobot'],
@@ -18,5 +19,4 @@ setup(name='lobot',
             'License :: OSI Approved :: MIT License',
             'Environment :: Console',
             'Programming Language :: Python :: 3.5',
-      ]
-      )
+      ])

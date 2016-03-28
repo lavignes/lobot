@@ -13,6 +13,9 @@ if not os.path.isfile('config.json'):
                 ('nick', 'LoBot'),
                 ('username', 'LoBot'),
                 ('owner', 'LoBot'),
+                ('host', 'localhost'),
+                ('port', 6666),
+                ('ssl', False),
                 ('channels', [
                     '#lobot'
                 ]),
