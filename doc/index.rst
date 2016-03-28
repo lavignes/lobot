@@ -11,6 +11,8 @@ Contents:
    installation.rst
    plugins.rst
    plugins_ref.rst
+   http.rst
+   http_ref.rst
 
 Indices and tables
 ==================

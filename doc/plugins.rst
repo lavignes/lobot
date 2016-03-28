@@ -1,7 +1,10 @@
 Plugins
 =======
 
-Begin by subclassing :class:`lobot.plugins.Plugin`::
+.. module:: lobot.plugins
+.. currentmodule:: lobot.plugins
+
+Begin by subclassing :class:`Plugin`::
 
     from lobot.plugins import Plugin
 

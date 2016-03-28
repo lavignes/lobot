@@ -11,15 +11,15 @@ When LoBot loads a module, it looks for all subclasses of :class:`Plugin` and cr
 
 .. class:: Plugin()
 
-    .. attribute:: nick: str
+    .. attribute:: nick
 
-       The current nickname of the bot.
+       :return: (str) The current nickname of the bot.
 
        A read-only property.
 
-    .. attribute:: config: dict
+    .. attribute:: config
 
-       The plugin-specific config from ``config.json``.
+       :return: (dict) The plugin-specific config from ``config.json``.
 
        A read-only property.
 
