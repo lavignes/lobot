@@ -18,6 +18,11 @@ A highly extensible IRC Bot framework
 Getting started
 ===============
 
+::
+
+    $ pip install lobot
+
+
 Running LoBot
 ^^^^^^^^^^^^^
 

@@ -1,2 +1,4 @@
+.. _http:
+
 HTTP Plugin
 ===========

@@ -1,3 +1,5 @@
+.. _plugins-ref:
+
 Plugins Reference
 =================
 
@@ -35,6 +37,7 @@ When LoBot loads a module, it looks for all subclasses of :class:`Plugin` and cr
     .. method:: reply(nick: str, me_or_chan: str, message: str)
 
         Helper method to send a reply to the channel or person addressing the bot.
+        Usually used when writing :ref:`plugin-decorators`.
 
         :param str nick: A user's nickname. Usually received as the **nick** parameter to a callback.
 
@@ -85,6 +88,8 @@ When LoBot loads a module, it looks for all subclasses of :class:`Plugin` and cr
         :param str nick: A user's nickname.
 
         :param str channel: The channel name.
+
+.. _plugin-decorators:
 
 Event Decorators
 ----------------
