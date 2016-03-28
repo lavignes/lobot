@@ -1,4 +1,4 @@
-from lobot.plugins import HTTPPlugin, command
+from lobot.plugins import HTTPPlugin, command, listen
 
 
 class CatFacts(HTTPPlugin):

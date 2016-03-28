@@ -58,7 +58,7 @@ LoBot's configuration is in ``config.json``. The basic LoBot configuration is un
 Documentation
 =============
 
-https://lobot.readthedocs.org.
+https://lobot.readthedocs.org
 
 Requirements
 ============

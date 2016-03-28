@@ -1,5 +1,6 @@
 .idea
 doc/_*
+bin/test/
 *.json
 *.pyc
 *.pyo

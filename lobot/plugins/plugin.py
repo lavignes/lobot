@@ -11,24 +11,24 @@ _Listener = Callable[[Any, str, str, str, Any], asyncio.Future]
 _FLAGSMAP = {'i': re.IGNORECASE, 's': re.DOTALL}
 
 
-def _raw_wrap(regex: str, attribute: str, flags: str='') -> Callable[[_Listener], _Listener]:
+def _raw_wrap(pattern: str, attribute: str, flags: str='') -> Callable[[_Listener], _Listener]:
     def wrap(listener: _Listener) -> _Listener:
         if not hasattr(listener, attribute):
             setattr(listener, attribute, [])
         re_flags = 0
         for c in flags:
             re_flags |= _FLAGSMAP.get(c, 0)
-        getattr(listener, attribute).append(re.compile(regex, flags=re_flags))
+        getattr(listener, attribute).append(re.compile(pattern, flags=re_flags))
         return listener
     return wrap
 
 
-def listen(regex: str, flags: str='') -> Callable[[_Listener], _Listener]:
-    return _raw_wrap(regex, '_listener_patterns', flags)
+def listen(pattern: str, flags: str='') -> Callable[[_Listener], _Listener]:
+    return _raw_wrap(pattern, '_listener_patterns', flags)
 
 
-def command(regex: str, flags: str='') -> Callable[[_Listener], _Listener]:
-    return _raw_wrap(regex, '_commander_patterns', flags)
+def command(pattern: str, flags: str='') -> Callable[[_Listener], _Listener]:
+    return _raw_wrap(pattern, '_commander_patterns', flags)
 
 
 class _Bridge(ABC):
@@ -60,21 +60,20 @@ class Plugin(object):
 
     @property
     def nick(self) -> str:
-        '''Return the bot's nickname'''
         return self._bridge.nick
 
     @property
     def config(self) -> dict:
         return self._bridge.config.get(self._module_path)
 
+    def say(self, target: str, message: str):
+        self._bridge.proto.cmd_privmsg(target, message)
+
     def reply(self, nick: str, me_or_chan: str, message: str):
         if me_or_chan == self._bridge.nick:
              self._bridge.proto.cmd_privmsg(nick, message)
         else:
              self._bridge.proto.cmd_privmsg(me_or_chan, message)
-
-    def say(self, target: str, message: str):
-        self._bridge.proto.cmd_privmsg(target, message)
 
     async def on_load(self):
         pass

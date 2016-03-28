@@ -64,7 +64,7 @@ class Lobot(IRCProtocolDelegate, _Bridge):
         # Process plugins using the @listen decorator
         for listener in self._plugin_manager.find_attributes(plugin, '_listener_patterns'):
             for pattern in getattr(listener, '_listener_patterns'):
-                match = pattern.match(message)
+                match = pattern.search(message)
                 if match:
                     asyncio.ensure_future(listener(plugin, prefix.nick, target, message, match))
                     break
@@ -78,7 +78,7 @@ class Lobot(IRCProtocolDelegate, _Bridge):
         # Process plugins using the @command decorator
         for commander in self._plugin_manager.find_attributes(plugin, '_commander_patterns'):
             for pattern in getattr(commander, '_commander_patterns'):
-                match = pattern.match(message)
+                match = pattern.search(message)
                 if match:
                     asyncio.ensure_future(commander(plugin, prefix.nick, target, message, match))
                     break

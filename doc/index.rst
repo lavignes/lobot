@@ -1,5 +1,5 @@
-Welcome to LoBot's documentation!
-=================================
+LoBot
+=====
 
 **A highly extensible IRC Bot framework**
 
@@ -9,6 +9,8 @@ Contents:
    :maxdepth: 1
 
    installation.rst
+   plugins.rst
+   plugins_ref.rst
 
 Indices and tables
 ==================
@@ -16,4 +18,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-
