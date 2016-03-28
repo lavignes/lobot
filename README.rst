@@ -1,5 +1,5 @@
 LoBot
------
+=====
 
 A highly extensible IRC Bot framework
 
@@ -15,12 +15,11 @@ A highly extensible IRC Bot framework
     :target: https://travis-ci.org/pyrated/lobot
     :alt: Travis Build
 
-Introduction
-============
+Getting started
+===============
 
 Installing
-==========
-
+^^^^^^^^^^
 You can install LoBot using::
 
     $ pip install lobot
@@ -28,20 +27,15 @@ You can install LoBot using::
 Documentation
 =============
 
-View the latest LoBot documentation at: https://lobot.readthedocs.org.
+https://lobot.readthedocs.org.
 
-Using
-=====
-
-Initialize LoBot by providing it with a wokring directory::
-
-    $ mkdir lobot
-    $ cd lobot
-    $ lobot .
+Requirements
+============
+- Python >= 3.5
+- aiohttp (Will probably remove this soon)
 
 License
--------
-
+=======
 | Copyright (c) 2016 Scott LaVigne
 |
 | Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:

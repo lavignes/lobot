@@ -10,7 +10,6 @@ Installation
 Install the dependencies:
 
 - `aiohttp <https://github.com/KeepSafe/aiohttp>`_
-- `Read the Docs Sphinx Theme <https://github.com/snide/sphinx_rtd_theme>`_
 
 Alternatively use `pip`::
 
