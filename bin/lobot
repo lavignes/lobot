@@ -12,7 +12,9 @@ parser = argparse.ArgumentParser(description='Run LoBot')
 parser.add_argument('directory', metavar='DIR', type=str, help='bot working directory', default='.')
 args = parser.parse_args()
 
-dir = os.path.abspath(args.directory)
+dir = os.path.abspath(os.path.expanduser(args.directory))
+if not os.path.isdir(dir):
+    os.mkdir(dir)
 os.chdir(dir)
 config_path = os.path.join(dir, 'config.json')
 if not os.path.isfile(config_path):
@@ -21,9 +23,8 @@ if not os.path.isfile(config_path):
             ('lobot', OrderedDict([
                 ('nick', 'LoBot'),
                 ('username', 'LoBot'),
-                ('owner', 'LoBot'),
-                ('host', 'localhost'),
-                ('port', 6666),
+                ('host', 'irc.freenode.net'),
+                ('port', 8001),
                 ('ssl', False),
                 ('channels', [
                     '#lobot'

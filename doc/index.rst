@@ -1,5 +1,6 @@
 Welcome to LoBot's documentation!
 =================================
+
 **A highly extensible IRC Bot framework**
 
 Contents:

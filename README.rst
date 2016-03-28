@@ -28,10 +28,31 @@ Start LoBot by passing it a working directory::
 
 The first time you run LoBot, it will initialize the directory with a simple echo bot::
 
-    .lobot/
+    bot-directory/
         config.json
         plugs/
             echo.py
+
+
+Configuration
+^^^^^^^^^^^^^
+
+LoBot's configuration is in ``config.json``. The basic LoBot configuration is under the key ``lobot``::
+
+    "lobot": {
+        "nick": "LoBot",
+        "username": "LoBot",
+        "host": "irc.freenode.net",
+        "port": 8001,
+        "ssl": false,
+        "channels": [
+            "#lobot"
+        ],
+        "plugdir": "plugs",
+        "plugins": [
+            "echo"
+        ]
+    }
 
 
 Documentation
@@ -41,11 +62,13 @@ https://lobot.readthedocs.org.
 
 Requirements
 ============
+
 - Python >= 3.5
 - aiohttp (For the async HTTPPlugin) https://github.com/KeepSafe/aiohttp
 
 License
 =======
+
 | Copyright (c) 2016 Scott LaVigne
 |
 | Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:

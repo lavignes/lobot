@@ -66,4 +66,4 @@ class Message(object):
             self._command = args.pop(0).decode()
             self._args = [arg.decode() for arg in args]
         except Exception:
-            raise MessageError('Message could not be decoded')
+            raise MessageError('Message could not be decoded: ' + data.decode())
