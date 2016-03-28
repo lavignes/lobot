@@ -18,11 +18,21 @@ A highly extensible IRC Bot framework
 Getting started
 ===============
 
-Installing
-^^^^^^^^^^
-You can install LoBot using::
+Running LoBot
+^^^^^^^^^^^^^
 
-    $ pip install lobot
+Start LoBot by passing it a working directory::
+
+    $ lobot ~/.lobot
+
+
+The first time you run LoBot, it will initialize the directory with a simple echo bot::
+
+    .lobot/
+        config.json
+        plugs/
+            echo.py
+
 
 Documentation
 =============
@@ -32,7 +42,7 @@ https://lobot.readthedocs.org.
 Requirements
 ============
 - Python >= 3.5
-- aiohttp (Will probably remove this soon)
+- aiohttp (For the async HTTPPlugin) https://github.com/KeepSafe/aiohttp
 
 License
 =======

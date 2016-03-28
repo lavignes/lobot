@@ -3,7 +3,9 @@ from collections import OrderedDict
 from typing import Optional
 import asyncio
 import json
+import sys
 import re
+import os
 
 from .irc.protocol import IRCProtocol, IRCProtocolFactory, IRCProtocolDelegate
 from .plugins.plugin import Plugin, _Bridge
@@ -28,21 +30,23 @@ class Lobot(IRCProtocolDelegate, _Bridge):
     def loop(self) -> str:
         return self._loop
 
-    def __init__(self, loop: Optional[AbstractEventLoop], config_path: str):
+    def __init__(self, loop: Optional[AbstractEventLoop], working_dir: str):
         self._proto = None
         self._loop = loop
-        self._config_path = config_path
+        self._working_dir = working_dir
         self._plugin_manager = PluginManager()
         self._reload_config()
         self._connect()
 
     def _reload_config(self):
-        with open(self._config_path) as config:
+        with open(os.path.join(self._working_dir, 'config.json')) as config:
             self._config = json.load(config, object_pairs_hook=OrderedDict)
         self._nick = self._config['lobot']['nick']
         self._nick_pattern = re.compile('^@?' + self._nick + ':?', flags=re.IGNORECASE)
 
     def _reload_plugins(self):
+        plugs_path = os.path.join(self._working_dir, self._config['lobot']['plugdir'])
+        sys.path.append(plugs_path)
         for module in self._config['lobot']['plugins']:
             for plugin in self._plugin_manager.load_module(module):
                 plugin._attach(module, self)
