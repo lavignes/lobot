@@ -1,4 +1,5 @@
 LoBot
+-----
 
 A highly extensible IRC Bot framework
 
@@ -6,8 +7,10 @@ A highly extensible IRC Bot framework
     :target: http://lobot.readthedocs.org/en/latest/?badge=latest
     :alt: Documentation Status
 
+
 Introduction
 ============
+
 
 Installing
 ==========
@@ -16,10 +19,13 @@ You can install LoBot using::
 
     $ pip install lobot
 
+
+
 Documentation
 =============
 
 View the latest LoBot documentation at: https://lobot.readthedocs.org.
+
 
 Using
 =====
@@ -30,7 +36,8 @@ Initialize LoBot by providing it with a wokring directory::
     $ cd lobot
     $ lobot .
 
--------
+
+
 License
 -------
 

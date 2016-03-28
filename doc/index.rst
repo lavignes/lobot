@@ -7,7 +7,9 @@ Contents:
 
 .. toctree::
    :maxdepth: 1
+
    installation.rst
+
 
 Indices and tables
 ==================
