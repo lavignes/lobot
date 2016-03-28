@@ -2,7 +2,7 @@ from lobot.plugins import HTTPPlugin, command, listen
 
 
 class CatFacts(HTTPPlugin):
-    @command('^cat ?facts?', 'i')
+    @command('cat ?facts?', 'i')
     async def cat_facts(self, nick: str, target: str, message: str, match):
         r = await self.http_get('http://catfacts-api.appspot.com/api/facts')
         json = await r.json
