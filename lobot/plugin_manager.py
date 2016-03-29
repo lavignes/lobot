@@ -21,6 +21,8 @@ class Module(object):
         for obj in module.__dict__.values():
             if isinstance(obj, type) and issubclass(obj, Plugin):
                 self._plugins.append(obj())
+        if len(self._plugins) == 0:
+            raise ImportError('No plugins found in ' + module)
 
 
 class PluginManager(object):
@@ -38,6 +40,17 @@ class PluginManager(object):
     def __init__(self):
         self._modules = {}
 
+    def _import_new(self, module_path: str) -> Tuple[str, Module]:
+        try: # Absolute import
+            wrapped = Module(importlib.import_module(module_path))
+        except ImportError:
+            try: # Relative import
+                module_path = 'lobot.plugins.' + module_path
+                wrapped = Module(importlib.import_module(module_path))
+            except ImportError:
+                raise
+        return module_path, wrapped
+
     def find_attributes(self, plugin: Plugin, attribute: str) -> List[_Listener]:
         return [method for method in plugin.__class__.__dict__.values() if hasattr(method, attribute)]
 
@@ -45,8 +58,8 @@ class PluginManager(object):
         if module_path in self._modules:
             module = self._modules[module_path].module
             importlib.reload(module)
+            wrapped = Module(module)
         else:
-            module = importlib.import_module(module_path)
-        wrapped = Module(module)
+            module_path, wrapped = self._import_new(module_path)
         self._modules[module_path] = wrapped
         return wrapped.plugins
