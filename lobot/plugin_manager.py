@@ -35,6 +35,7 @@ class PluginManager(object):
         plugins = []
         for module_path, module in self._modules.items():
             plugins += module.plugins
+        return plugins
 
     def __init__(self):
         self._modules = {}
