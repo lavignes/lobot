@@ -46,7 +46,11 @@ class PluginManager(object):
             module = self._modules[module_path].module
             importlib.reload(module)
         else:
-            module = importlib.import_module(module_path)
+            try:
+                module = importlib.import_module(module_path)
+            except ImportError:
+                if len(module_path.split('.')) == 1:
+                    module = importlib.import_module("lobot.plugins." + module_path)
         wrapped = Module(module)
         self._modules[module_path] = wrapped
         return wrapped.plugins
