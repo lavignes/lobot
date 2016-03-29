@@ -42,14 +42,15 @@ class PluginManager(object):
         return [method for method in plugin.__class__.__dict__.values() if hasattr(method, attribute)]
 
     def load_module(self, module_path: str) -> List[Plugin]:
-        module = None
         if module_path in self._modules:
             module = self._modules[module_path].module
             importlib.reload(module)
         else:
-            if len(module_path.split('.')) == 1:
-                module_path = "lobot.plugins." + module_path
-            module = importlib.import_module(module_path)
+            try:
+                module = importlib.import_module(module_path)
+            except ImportError:
+                if len(module_path.split('.')) == 1:
+                    module = importlib.import_module("lobot.plugins." + module_path)
         wrapped = Module(module)
         self._modules[module_path] = wrapped
         return wrapped.plugins
