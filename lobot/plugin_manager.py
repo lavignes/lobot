@@ -50,16 +50,14 @@ class PluginManager(object):
             try:
                 module = importlib.import_module(module_path)
             except ImportError:
-                print("> Could not find plugin: '" + str(module_path) + "' in plugs/ nor sys.path.")
+                pass
             if not module and len(module_path.split('.')) == 1:
                 try:
                     packaged_plugins_dir = "lobot.plugins."
-                    print("> Trying module '" + module_path + "' as '" + packaged_plugins_dir + module_path + "'.")
                     module_path = packaged_plugins_dir + module_path
                     module = importlib.import_module(module_path)
-                    print("> Found " + module_path)
                 except ImportError:
-                    print("> Still could not find " + str(module_path) + ". Skipping known plugin.")
+                    pass
         wrapped = Module(module)
         self._modules[module_path] = wrapped
         return wrapped.plugins
