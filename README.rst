@@ -69,7 +69,6 @@ Requirements
 ============
 
 - Python >= 3.5
-- aiohttp (For the async HTTPPlugin) https://github.com/KeepSafe/aiohttp
 
 License
 =======

@@ -8,6 +8,13 @@ from .message import Message, Prefix, MessageError
 from .rfc import Command, ReplyCode, ErrorCode
 
 
+__all__ = [
+    'IRCProtocolFactory',
+    'IRCProtocol',
+    'IRCProtocolDelegate'
+]
+
+
 def _chunk_bytes(l: bytes, n: int) -> bytes:
     for i in range(0, len(l), n):
         yield l[i:i + n]
@@ -46,11 +53,10 @@ class IRCProtocol(Protocol):
                 raise
 
     def connection_lost(self, error: Optional[Exception]):
-        self._schedule(self._delegate.proto_disconnected())
+        self._schedule(self._delegate.proto_disconnected(self))
 
-    @staticmethod
-    def _schedule(task: Union[CoroutineType, Future]):
-        asyncio.ensure_future(task)
+    def _schedule(self, coro_or_future: Union[CoroutineType, Future]):
+        self._delegate.proto_ensure_future(self, coro_or_future)
 
     def _send(self, command: Command, *args: List[str], long_arg: Optional[str]=None):
         message = command.value + ' ' + ' '.join(arg for arg in args if arg)
@@ -82,25 +88,25 @@ class IRCProtocol(Protocol):
                 pass
         else:
             if command == Command.KICK:
-                self._schedule(self._delegate.proto_kick(message.prefix,
+                self._schedule(self._delegate.proto_kick(self, message.prefix,
                                                          message.args[0],
                                                          message.args[1],
                                                          _get_default(message.args, 2)))
             elif command == Command.JOIN:
-                self._schedule(self._delegate.proto_join(message.prefix,
+                self._schedule(self._delegate.proto_join(self, message.prefix,
                                                          message.args[0]))
             elif command == Command.PART:
-                self._schedule(self._delegate.proto_part(message.prefix,
+                self._schedule(self._delegate.proto_part(self, message.prefix,
                                                          message.args[0],
                                                          _get_default(message.args, 1)))
             elif command == Command.PING:
-                self._schedule(self._delegate.proto_ping(message.args[0]))
+                self._schedule(self._delegate.proto_ping(self, message.args[0]))
             elif command == Command.PRIVMSG:
-                self._schedule(self._delegate.proto_privmsg(message.prefix,
+                self._schedule(self._delegate.proto_privmsg(self, message.prefix,
                                                             message.args[0],
                                                             message.args[1]))
             elif command == Command.TOPIC:
-                self._schedule(self._delegate.proto_topic(message.prefix,
+                self._schedule(self._delegate.proto_topic(self, message.prefix,
                                                           message.args[0],
                                                           _get_default(message.args, 1)))
 
@@ -139,26 +145,29 @@ class IRCProtocol(Protocol):
 
 
 class IRCProtocolDelegate(ABC):
+    def proto_ensure_future(self, proto: IRCProtocol, coro_or_future: Union[CoroutineType, Future]):
+        raise NotImplementedError
+
     async def proto_connected(self, proto: IRCProtocol):
         raise NotImplementedError
 
-    async def proto_disconnected(self):
+    async def proto_disconnected(self, proto: IRCProtocol):
         raise NotImplementedError
 
-    async def proto_kick(self, prefix: Prefix, channel: str, nick: str, message: Optional[str]=None):
+    async def proto_kick(self, proto: IRCProtocol, prefix: Prefix, channel: str, nick: str, message: Optional[str]=None):
         raise NotImplementedError
 
-    async def proto_join(self, prefix: Prefix, channel: str):
+    async def proto_join(self, proto: IRCProtocol, prefix: Prefix, channel: str):
         raise NotImplementedError
 
-    async def proto_part(self, prefix: Prefix, channel: str, message: Optional[str]=None):
+    async def proto_part(self, proto: IRCProtocol, prefix: Prefix, channel: str, message: Optional[str]=None):
         raise NotImplementedError
 
-    async def proto_ping(self, server: str):
+    async def proto_ping(self, proto: IRCProtocol, server: str):
         raise NotImplementedError
 
-    async def proto_privmsg(self, prefix: Prefix, target: str, message: str):
+    async def proto_privmsg(self, proto: IRCProtocol, prefix: Prefix, target: str, message: str):
         raise NotImplementedError
 
-    async def proto_topic(self, prefix: Prefix, channel: str, message: Optional[str]=None):
+    async def proto_topic(self, proto: IRCProtocol, prefix: Prefix, channel: str, message: Optional[str]=None):
         raise NotImplementedError

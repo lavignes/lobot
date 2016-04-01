@@ -1,6 +1,13 @@
 from enum import Enum, IntEnum, unique
 
 
+__all__ = [
+    'Command',
+    'ReplyCode',
+    'ErrorCode'
+]
+
+
 @unique
 class Command(Enum):
     JOIN = 'JOIN'

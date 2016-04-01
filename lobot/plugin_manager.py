@@ -6,6 +6,12 @@ from .plugins import Plugin
 from .plugins.plugin import _Listener
 
 
+__all__ = [
+    'Module',
+    'PluginManager'
+]
+
+
 class Module(object):
     @property
     def plugins(self) -> List[Plugin]:

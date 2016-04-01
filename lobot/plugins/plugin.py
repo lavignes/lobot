@@ -7,6 +7,13 @@ import re
 from ..irc.protocol import IRCProtocol
 
 
+__all__ = [
+    'listen',
+    'command',
+    'Plugin'
+]
+
+
 _Listener = Callable[[Any, str, str, str, Any], asyncio.Future]
 _FLAGSMAP = {'i': re.IGNORECASE, 's': re.DOTALL}
 
@@ -82,6 +89,9 @@ class Plugin(object):
         pass
 
     async def on_disconnected(self):
+        pass
+
+    async def on_command(self, nick: str, target: str, message: str):
         pass
 
     async def on_msg(self, nick: str, channel: str, message: str):
