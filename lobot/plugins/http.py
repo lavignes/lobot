@@ -8,6 +8,7 @@ import json
 
 from lobot.plugins import Plugin
 
+
 __all__ = [
     'HTTPResponse',
     'HTTPSession',
